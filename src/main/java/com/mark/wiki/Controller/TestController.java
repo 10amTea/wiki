@@ -18,6 +18,11 @@ public class TestController {
 //    @RequestMapping("/hello") // All ways can be accessed.
     @GetMapping("/hello")
     public String hello() {
-        return "Hello world";
+        return "Hello World!";
+    }
+
+    @PostMapping("/hello/post")
+    public String helloPost(String name) {
+        return "Hello World! Post, " + name;
     }
 }
