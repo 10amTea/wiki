@@ -1,4 +1,0 @@
-rootProject.name = 'wiki'
-// If you need the algo submodule, uncomment it.
-include 'algo'
-
