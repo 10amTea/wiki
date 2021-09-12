@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.8'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "com.thinkimi.gradle.MybatisGenerator" version "2.3"
 }
 
 group = 'com.mark'
@@ -17,6 +18,23 @@ repositories {
     }
 
     mavenCentral()
+}
+
+configurations {
+    mybatisGenerator
+}
+// mybatis-generator.xml 配置路径
+// 这里会遇到个问题：MyBatis Generator 通过xml生成，有日志但是没有生成文件成功的问题，
+// 原因：mac下是找不到 ./src 路径的，需要全路径，如下配置。windows则为src/main/resources/generator-config.xml
+mybatisGenerator {
+    verbose = true
+    configFile = 'src/main/resources/generator/generator-config.xml'
+
+    // optional, here is the override dependencies for the plugin or you can add other database dependencies.
+    dependencies {
+        mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.7'
+        mybatisGenerator 'mysql:mysql-connector-java:8.0.22'
+    }
 }
 
 dependencies {
